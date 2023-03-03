@@ -7,7 +7,7 @@ Created on Thu Mar  2 13:46:21 2023
 
 import pandas as pd
 
-
+names = ['HSN','Rey','Zahra']
 
 def read_csv(path):
     df = pd.read_csv(path)
@@ -39,9 +39,21 @@ def get_total_for_us():
 def get_dong_for_us():
     return get_total_for_us()/2
 
+def get_dong_for_one_from_who(a,b,names):
+    rows = df.loc[(df[b] == 1)]
+    qry_str = ''
+    for name in names:
+        if (name != b):
+            qry_str += str(name) + "=0 and"
+    
+    qry_str = qry_str[:-3]
+    
+    rows =rows.query(qry_str)
 
 
-print(get_dong_for_us())
+
+
+print()
 
 
 
